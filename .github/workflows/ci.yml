@@ -1,4 +1,10 @@
 name: CI
+run-name: CI run by @${{ github.actor }} on ${{ github.ref_name }}
+
+on:
+  push:
+    branches: [main]
+
 
 on:
   push:
