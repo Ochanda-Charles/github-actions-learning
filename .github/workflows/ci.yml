@@ -4,6 +4,25 @@ run-name: CI run by @${{ github.actor }} on ${{ github.ref_name }}
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - "**/*.md"
+      - ".gitignore"
+      - "LICENSE"
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - "**/*.md"
+      - ".gitignore"
+      - "LICENSE"
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Why are you running this manually?"
+        required: false
+        default: "ad-hoc verification"
+  schedule:
+    # Every Monday at 09:00 UTC — a "weekly health check" against the latest deps
+    - cron: "0 9 * * 1"
 
 jobs:
   test:
